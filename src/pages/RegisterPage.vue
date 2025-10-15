@@ -501,7 +501,7 @@ const areaOptions = [
   { value: '593', label: '+593 厄瓜多尔' },
   { value: '594', label: '+594 法属圭亚那 (法国)' },
   { value: '595', label: '+595 巴拉圭' },
-  { value: '596', label: '+596 马提尼克 (法国)' },
+  { value: '596', label: '+596 马提��克 (法国)' },
   { value: '597', label: '+597 苏里南' },
   { value: '598', label: '+598 乌拉圭' },
   { value: '599', label: '+599 博内尔岛，圣尤斯特歇斯 和 库拉索 (荷兰王国)' },
@@ -554,9 +554,9 @@ const areaOptions = [
   { value: '1284', label: '+1284 英属维尔京群岛 (英国)' },
   { value: '1340', label: '+1340 美属维尔京群岛 (美国)' },
   { value: '1345', label: '+1345 开曼群岛 (英国)' },
-  { value: '1441', label: '+1441 百慕大 (英国)' },
+  { value: '1441', label: '+1441 百慕大 (英��)' },
   { value: '1473', label: '+1473 格林纳达' },
-  { value: '1649', label: '+1649 土克凯可群岛 (��国)' },
+  { value: '1649', label: '+1649 土克凯可群岛 (英国)' },
   { value: '1664', label: '+1664 蒙塞拉特岛 (英国)' },
   { value: '1671', label: '+1671 关岛 (美国)' },
   { value: '1684', label: '+1684 美属萨摩亚 (美国)' },
@@ -629,8 +629,9 @@ const areaOptions = [
 .reg-code { height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #e5e7eb; background: #f9fafb; color: #1f2937; font-weight: 500; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 .reg-code:hover { background: #f3f4f6; }
 
-.reg-agree { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #4b5563; line-height: 1.4; margin: 8px 0 6px; }
+.reg-agree { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4b5563; line-height: 1.4; margin: 8px 0 6px; }
 .reg-agree a { color: #cb261c; text-decoration: none; }
+.reg-agree input[type='checkbox'] { width: 16px; height: 16px; }
 .reg-agree a:hover { text-decoration: underline; }
 
 .reg-submit { width: 100%; height: 46px; border-radius: 6px; font-weight: 600; letter-spacing: 0.6px; background: #cb261c; border: none; color: #fff; cursor: pointer; margin-top: 4px; }
