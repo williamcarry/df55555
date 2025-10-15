@@ -379,7 +379,7 @@ const areaOptions = [
   { value: '52', label: '+52 墨西哥' },
   { value: '53', label: '+53 古巴' },
   { value: '54', label: '+54 阿根廷' },
-  { value: '55', label: '+55 巴西' },
+  { value: '55', label: '+55 ��西' },
   { value: '56', label: '+56 智利' },
   { value: '57', label: '+57 哥伦比亚' },
   { value: '58', label: '+58 委内瑞拉' },
@@ -409,7 +409,7 @@ const areaOptions = [
   { value: '220', label: '+220 冈比亚' },
   { value: '221', label: '+221 塞内加尔' },
   { value: '222', label: '+222 毛里塔尼亚' },
-  { value: '223', label: '+223 马里共和国' },
+  { value: '223', label: '+223 马里���和国' },
   { value: '224', label: '+245 几内亚比绍' },
   { value: '225', label: '+225 科特迪瓦' },
   { value: '226', label: '+226 布基纳法索' },
@@ -516,7 +516,7 @@ const areaOptions = [
   { value: '682', label: '+682 库克群岛 (新西兰)' },
   { value: '685', label: '+685 萨摩亚' },
   { value: '686', label: '+686 基里巴斯' },
-  { value: '687', label: '+687 新喀里多尼亚 (法国)' },
+  { value: '687', label: '+687 新喀���多尼亚 (法国)' },
   { value: '689', label: '+689 法属波利尼西亚 (法国)' },
   { value: '852', label: '+852 中国香港' },
   { value: '853', label: '+853 中国澳门' },
@@ -544,7 +544,7 @@ const areaOptions = [
   { value: '992', label: '+992 塔吉克' },
   { value: '993', label: '+993 土库曼' },
   { value: '994', label: '+994 阿塞拜疆' },
-  { value: '995', label: '+995 乔治亚' },
+  { value: '995', label: '+995 乔��亚' },
   { value: '996', label: '+996 吉尔吉斯' },
   { value: '998', label: '+998 乌兹别克' },
   { value: '1242', label: '+1242 巴哈马' },
@@ -624,8 +624,9 @@ const areaOptions = [
 .reg-eye img { width: 18px; height: 18px; }
 .reg-input--with-eye { padding-left: 40px; }
 
-.reg-row--code { justify-content: space-between; gap: 12px; }
-.reg-code { height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #e5e7eb; background: #f9fafb; color: #1f2937; font-weight: 500; cursor: pointer; }
+.reg-row--code { justify-content: space-between; gap: 12px; align-items: center; }
+.reg-row--code .reg-input { flex: 1 1 auto; min-width: 0; }
+.reg-code { height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #e5e7eb; background: #f9fafb; color: #1f2937; font-weight: 500; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 .reg-code:hover { background: #f3f4f6; }
 
 .reg-agree { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #4b5563; line-height: 1.4; margin: 8px 0 6px; }
