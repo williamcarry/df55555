@@ -1,200 +1,329 @@
 <template>
-  <el-container class="register-page" direction="vertical">
-    <el-header class="register-header" height="88px">
-      <div class="register-header__inner">
-        <div class="register-header__left">
-          <a class="register-brand" href="/" aria-label="SaleYee 首页">
-            <img src="https://www.saleyee.com/Content/Images/logo.png" alt="SaleYee Logo" />
-            <span>赛盈分销平台</span>
-          </a>
-          <h2 class="register-header__title">{{ t('register.welcome') }}</h2>
-        </div>
-        <div class="register-header__right">
-          <a class="register-header__link" href="/getting-started.html">{{ t('header.gettingStarted') }}</a>
-          <span class="register-header__divider">|</span>
-          <el-dropdown v-model:visible="langOpen" trigger="click" placement="bottom-end">
-            <span class="register-language" role="button" tabindex="0">
-              <img
-                src="https://www.saleyee.com/ContentNew/Images/2025/202507/language.png"
-                alt="语言切换"
-              />
+  <div class="login-page register-clone">
+    <!-- Header copied from LoginPage -->
+    <header class="login-header">
+      <div class="login-container login-header__inner">
+        <a href="/" class="login-logo" aria-label="SaleYee 首页">
+          <img src="https://www.saleyee.com/Content/Images/logo.png" alt="SaleYee" />
+        </a>
+        <div class="login-header__actions">
+          <a class="login-header__link" href="/getting-started.html">{{ t('header.gettingStarted') }}</a>
+
+          <div class="login-language" ref="langRef">
+            <button
+              type="button"
+              class="login-language__btn"
+              @click="toggleLang"
+              @keydown.escape="closeLang"
+              :aria-expanded="langOpen ? 'true' : 'false'"
+              aria-haspopup="menu"
+            >
+              <Globe class="login-language__icon" :stroke-width="1.6" />
               <span>{{ langLabel }}</span>
-              <el-icon class="register-language__icon"><ArrowDown /></el-icon>
-            </span>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item
-                  :class="{ 'is-active': currentLang === 'zh-CN' }"
-                  @click="selectLang('zh-CN')"
-                >
-                  简体中文
-                </el-dropdown-item>
-                <el-dropdown-item :class="{ 'is-active': currentLang === 'en' }" @click="selectLang('en')">
-                  English
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
+              <ChevronDown class="login-language__chevron" :stroke-width="1.6" />
+            </button>
+            <div v-show="langOpen" class="login-language__menu" role="menu">
+              <button
+                type="button"
+                class="login-language__item"
+                :class="currentLang === 'zh-CN' ? 'is-active' : ''"
+                @click="selectLang('zh-CN')"
+                role="menuitem"
+              >
+                {{ t('lang.zh') }}
+              </button>
+              <button
+                type="button"
+                class="login-language__item"
+                :class="currentLang === 'en' ? 'is-active' : ''"
+                @click="selectLang('en')"
+                role="menuitem"
+              >
+                {{ t('lang.en') }}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </el-header>
+    </header>
 
-    <el-main class="register-main">
-      <div class="register-main__container">
-        <el-row :gutter="32" align="middle" class="register-main__row">
-          <el-col :xs="24" :lg="13" class="register-banner__col">
-            <div class="register-banner">
-              <img
-                class="register-banner__image"
-                src="https://resource.saleyee.com/UploadFiles/Images/2024/202407/8267eb99-b710-45ae-a362-37a52abc0618.jpg"
-                alt="注册横幅"
-              />
-              <div class="register-banner__bullets" aria-hidden="true">
-                <span class="is-active"></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </el-col>
-          <el-col :xs="24" :lg="11" class="register-form__col">
-            <el-card shadow="always" class="register-card">
-              <h2 class="register-card__title">{{ t('register.title') }}</h2>
-              <el-form :model="form" class="register-form" @submit.prevent>
-                <div class="register-form__row register-form__row--split">
-                  <div class="register-field register-field--select">
-                    <label>{{ t('register.area') }}</label>
-                    <el-select
-                      v-model="form.area"
-                      class="register-select"
-                      filterable
-                      :teleported="false"
-                      placeholder="+86 中国"
-                    >
-                      <el-option
-                        v-for="option in areaOptions"
-                        :key="option.value"
-                        :label="option.label"
-                        :value="option.value"
-                      />
-                    </el-select>
-                  </div>
-                  <div class="register-field register-field--input">
-                    <label class="sr-only" for="register-phone">{{ t('register.phone') }}</label>
-                    <el-input
-                      id="register-phone"
-                      v-model="form.phone"
-                      class="register-input"
-                      :placeholder="t('register.phone')"
-                      clearable
-                    />
+    <!-- Main hero copied from LoginPage; login card replaced with register card -->
+    <main class="login-main">
+      <div class="login-hero-wrap">
+        <section class="login-hero">
+          <transition-group name="fade" tag="div" class="login-hero__stage">
+            <img
+              v-for="(src, i) in slides"
+              :key="src + ':' + i + ':' + index"
+              v-show="i === index"
+              class="login-hero__image"
+              :src="src"
+              :alt="t('login.altBanner')"
+              @error="onHeroError"
+            />
+          </transition-group>
+
+          <div class="login-hero__inner">
+            <button class="login-hero__arrow" type="button" aria-label="上一张" @click="prev">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.3" /><path d="M13.8 8.5 10.3 12l3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" /></svg>
+            </button>
+            <button class="login-hero__arrow login-hero__arrow--right" type="button" aria-label="下一张" @click="next">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.3" /><path d="M10.2 8.5 13.7 12l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" /></svg>
+            </button>
+
+            <!-- Register Card (matches saleyee.com/register.html layout) -->
+            <div class="register-card">
+              <div class="register-card__tab">注册</div>
+
+              <!-- Country area + phone -->
+              <div class="reg-row reg-row--split">
+                <div class="reg-field reg-field--select">
+                  <label class="reg-label">{{ t('register.area') }}</label>
+                  <div class="reg-select">
+                    <select v-model="form.area" aria-label="地区区号">
+                      <option v-for="o in areaOptions" :key="o.value" :value="o.value">{{ o.label }}</option>
+                    </select>
+                    <span class="reg-select__arrow" aria-hidden="true">▾</span>
                   </div>
                 </div>
+                <div class="reg-field reg-field--input">
+                  <input
+                    id="register-phone"
+                    v-model="form.phone"
+                    class="reg-input"
+                    type="text"
+                    placeholder="手机号码"
+                    autocomplete="tel"
+                    inputmode="numeric"
+                  />
+                </div>
+              </div>
 
-                <div class="register-field">
-                  <label class="sr-only" for="register-password">{{ t('register.password') }}</label>
-                  <el-input
+              <!-- Password -->
+              <div class="reg-field">
+                <div class="reg-input-wrap">
+                  <button type="button" class="reg-eye" @click="showPwd = !showPwd" aria-label="切换密码可见性">
+                    <img :src="showPwd ? visibleIcon : hiddenIcon" alt="" />
+                  </button>
+                  <input
                     id="register-password"
                     v-model="form.password"
-                    class="register-input"
+                    class="reg-input reg-input--with-eye"
                     :type="showPwd ? 'text' : 'password'"
-                    :placeholder="t('register.password')"
-                  >
-                    <template #suffix>
-                      <button
-                        type="button"
-                        class="register-eye"
-                        @click="showPwd = !showPwd"
-                        aria-label="切换密码可见性"
-                      >
-                        <img :src="showPwd ? visibleIcon : hiddenIcon" alt="" />
-                      </button>
-                    </template>
-                  </el-input>
+                    placeholder="请输入密码(须含字母及数字，区分大小写，8-32位)"
+                    autocomplete="new-password"
+                  />
                 </div>
+              </div>
 
-                <div class="register-field">
-                  <label class="sr-only" for="register-confirm">{{ t('register.confirm') }}</label>
-                  <el-input
+              <!-- Confirm Password -->
+              <div class="reg-field">
+                <div class="reg-input-wrap">
+                  <button type="button" class="reg-eye" @click="showConfirm = !showConfirm" aria-label="切换确认密码可见性">
+                    <img :src="showConfirm ? visibleIcon : hiddenIcon" alt="" />
+                  </button>
+                  <input
                     id="register-confirm"
                     v-model="form.confirm"
-                    class="register-input"
+                    class="reg-input reg-input--with-eye"
                     :type="showConfirm ? 'text' : 'password'"
-                    :placeholder="t('register.confirm')"
-                  >
-                    <template #suffix>
-                      <button
-                        type="button"
-                        class="register-eye"
-                        @click="showConfirm = !showConfirm"
-                        aria-label="切换确认密码可见性"
-                      >
-                        <img :src="showConfirm ? visibleIcon : hiddenIcon" alt="" />
-                      </button>
-                    </template>
-                  </el-input>
-                </div>
-
-                <div class="register-form__row register-form__row--code">
-                  <el-input
-                    id="register-sms"
-                    v-model="form.sms"
-                    class="register-input"
-                    maxlength="4"
-                    :placeholder="t('register.sms')"
-                  />
-                  <el-button class="register-code" type="default">{{ t('register.getCode') }}</el-button>
-                </div>
-
-                <div class="register-field">
-                  <el-input
-                    id="register-invite"
-                    v-model="form.invite"
-                    class="register-input"
-                    :placeholder="t('register.invite')"
-                    clearable
+                    placeholder="请再次输入密码"
+                    autocomplete="new-password"
                   />
                 </div>
+              </div>
 
-                <div class="register-agree">
-                  <el-checkbox v-model="form.agree" aria-label="同意条款"></el-checkbox>
-                  <span>
-                    {{ t('register.agree') }}
-                    <a href="/PrivacyDetails/1.html" target="_blank" rel="noreferrer">{{ t('register.terms') }}</a>
-                    -
-                    <a href="/PrivacyDetails/2.html" target="_blank" rel="noreferrer">{{ t('register.privacy') }}</a>
-                  </span>
-                </div>
+              <!-- SMS code -->
+              <div class="reg-row reg-row--code">
+                <input
+                  id="register-sms"
+                  v-model="form.sms"
+                  class="reg-input"
+                  type="text"
+                  maxlength="4"
+                  placeholder="请输入短信验证码"
+                  autocomplete="one-time-code"
+                  inputmode="numeric"
+                />
+                <button type="button" class="reg-code" @click="sendCode">获取验证码</button>
+              </div>
 
-                <el-button class="register-submit" type="primary" size="large" native-type="submit">
-                  {{ t('register.next') }}
-                </el-button>
+              <!-- Invitation code -->
+              <div class="reg-field">
+                <input
+                  id="register-invite"
+                  v-model="form.invite"
+                  class="reg-input"
+                  type="text"
+                  placeholder="邀请码（没有可不填）"
+                  autocomplete="off"
+                />
+              </div>
 
-                <div class="register-login">
-                  <span>{{ t('register.already') }}</span>
-                  <a href="/login">{{ t('auth.login') }}</a>
-                </div>
-              </el-form>
-            </el-card>
-          </el-col>
-        </el-row>
+              <!-- Agreement -->
+              <div class="reg-agree">
+                <input id="agree" type="checkbox" v-model="form.agree" />
+                <label for="agree">
+                  我已阅读并同意
+                  <a href="/PrivacyDetails/1.html" target="_blank" rel="noreferrer">《服务条款》</a> -
+                  <a href="/PrivacyDetails/2.html" target="_blank" rel="noreferrer">《隐私协议》</a>
+                </label>
+              </div>
+
+              <!-- Next button -->
+              <button type="button" class="reg-submit" @click="nextStep">下一步</button>
+
+              <!-- Login link -->
+              <div class="reg-login">
+                <a href="/login">已有账号,马上<span>登录</span></a>
+              </div>
+            </div>
+
+            <div class="login-hero__dots" aria-hidden="true">
+              <span v-for="(s, i) in slides" :key="'dot-' + i" :class="i === index ? 'is-active' : ''" @click="go(i)"></span>
+            </div>
+          </div>
+        </section>
       </div>
-    </el-main>
+    </main>
 
-    <el-footer class="register-footer" height="auto">
-      <div class="register-footer__inner">
-        <p>© 2025 Saleyee.com</p>
+    <!-- Footer copied from LoginPage -->
+    <footer class="login-footer">
+      <div class="login-container">
+        <div class="login-footer__grid">
+          <div class="login-footer__column">
+            <h2>{{ t('footer.about') }}</h2>
+            <ul>
+              <li><a href="https://www.saleyee.com/about-saleyee.html" target="_blank" rel="noreferrer">赛盈简介</a></li>
+              <li><a href="/membership.html" target="_blank" rel="noreferrer">会员权益</a></li>
+              <li><a href="https://blog.saleyee.com" target="_blank" rel="noreferrer">赛盈学院</a></li>
+              <li><a href="https://www.saleyee.com/contact-us.html" target="_blank" rel="noreferrer">联系我们</a></li>
+            </ul>
+          </div>
+          <div class="login-footer__column">
+            <h2>{{ t('footer.customer') }}</h2>
+            <ul>
+              <li><a href="https://www.saleyee.com/help-center.html" target="_blank" rel="noreferrer">帮助中心</a></li>
+              <li><a href="https://www.saleyee.com/faq/hp246053.html" target="_blank" rel="noreferrer">售后条款</a></li>
+              <li><a href="https://www.saleyee.com/guide/hp062361.html" target="_blank" rel="noreferrer">支付方式</a></li>
+              <li><a href="https://www.saleyee.com/faq/hp981158.html" target="_blank" rel="noreferrer">物流方式</a></li>
+              <li><a href="/help/14.html" target="_blank" rel="noreferrer">VAT政策解读</a></li>
+              <li><a href="https://www.saleyee.com/feedback.html" target="_blank" rel="noreferrer">体验反馈</a></li>
+            </ul>
+          </div>
+          <div class="login-footer__column">
+            <h2>{{ t('footer.partners') }}</h2>
+            <ul>
+              <li><a href="https://www.saleyee.com/distributors.html" target="_blank" rel="noreferrer">跨境卖家入驻</a></li>
+              <li><a href="https://supplier.saleyee.cn/?invitationCode=LeJWrx" target="_blank" rel="noreferrer">供应商入驻</a></li>
+              <li><a href="https://www.saleyee.com/partners.html" target="_blank" rel="noreferrer">合作伙伴</a></li>
+              <li><a href="/help/51.html" target="_blank" rel="noreferrer">商务合作</a></li>
+            </ul>
+          </div>
+          <div class="login-footer__column login-footer__column--social">
+            <h2>{{ t('footer.weixin') }}</h2>
+            <div class="login-social">
+              <a href="https://v.qq.com/s/videoplus/2791751583" target="_blank" rel="noreferrer" aria-label="腾讯视频">
+                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M17.5 12.5 26 19l-8.5 6.5z" fill="#fff" /></svg>
+              </a>
+              <a href="https://www.iqiyi.com/u/1639384380" target="_blank" rel="noreferrer" aria-label="爱奇艺">
+                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M12.5 19.2c0-4 2.6-6.7 7.6-6.7h2.6c3.4 0 5.3 1.4 5.3 5.2v4.6c0 3.9-1.9 5.2-5.3 5.2h-2.6c-5 0-7.6-2.7-7.6-6.8zm5.4 0c0 2.2 1 3.4 3.1 3.4h1.3c1.9 0 2.7-.6 2.7-2.7v-1.4c0-2.2-.8-2.8-2.7-2.8h-1.3c-2.1 0-3.1 1.1-3.1 3.5z" fill="#fff" /></svg>
+              </a>
+              <a href="https://space.bilibili.com/517583603" target="_blank" rel="noreferrer" aria-label="哔哩哔哩">
+                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M13.5 13h13c2.4 0 3.5 1.1 3.5 3.5v7c0 2.4-1.1 3.5-3.5 3.5h-13c-2.4 0-3.5-1.1-3.5-3.5v-7c0-2.4 1.1-3.5 3.5-3.5zm1.7 4.2c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6zm10.6 0c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6z" fill="#fff" /></svg>
+              </a>
+            </div>
+          </div>
+          <div class="login-footer__column login-footer__column--qr">
+            <h2>赛盈官方微信</h2>
+            <div class="login-footer__qr">
+              <img src="https://www.saleyee.com/ContentNew/Images/2021/December/saleyee-weixin.png" alt="赛盈官方微信" />
+            </div>
+          </div>
+        </div>
+
+        <div class="login-footer__bottom">
+          <div class="login-footer__station" role="button" tabindex="0" aria-label="赛盈国际站点">
+            <span></span>
+            <p>International</p>
+          </div>
+          <p>
+            © 2025 <a href="/" rel="noreferrer">Saleyee.com</a> Tengming Limited | <a href="/sitemap.html" target="_blank" rel="noreferrer">网站地图</a>
+          </p>
+        </div>
       </div>
-    </el-footer>
-  </el-container>
+    </footer>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
-import { ArrowDown } from '@element-plus/icons-vue'
+import { ref, computed, onMounted, onUnmounted, reactive } from 'vue'
 import { currentLang, setLang, t } from '@/i18n'
+import { Globe, ChevronDown } from 'lucide-vue-next'
 
-type LangCode = 'zh-CN' | 'en'
+// language
+const langOpen = ref(false)
+const langRef = ref<HTMLElement | null>(null)
+const langLabel = computed(() => (currentLang.value === 'zh-CN' ? t('lang.zh') : t('lang.en')))
+function toggleLang() {
+  langOpen.value = !langOpen.value
+}
+function closeLang() {
+  langOpen.value = false
+}
+function selectLang(code: 'zh-CN' | 'en') {
+  setLang(code)
+  closeLang()
+}
+function onClickOutside(e: MouseEvent) {
+  const el = langRef.value
+  if (el && !el.contains(e.target as Node)) closeLang()
+}
 
+// hero carousel (copied from LoginPage)
+const slides = [
+  'https://resource.saleyee.com/UploadFiles/Images/2025/202509/9fbef686-c4a5-4825-a43f-fadcee9ffe54.png',
+  'https://resource.saleyee.com/UploadFiles/Images/2025/202510/06189dc6-4039-4415-9581-e5d1bee4983b.jpg',
+  'https://resource.saleyee.com/UploadFiles/Images/2025/202509/49bbf525-ac11-4d7e-b8ba-f502c58b4407.jpg',
+]
+const index = ref(0)
+let timer: number | undefined
+const fallbackHero = 'https://resource.saleyee.com/UploadFiles/Images/2022/202204/49ae70d5-7089-46ae-bca9-67901afde1f7.jpg'
+function onHeroError(event: Event) {
+  const target = event.target as HTMLImageElement
+  if (target && target.src !== fallbackHero) target.src = fallbackHero
+}
+function startAuto() {
+  stopAuto()
+  if (slides.length > 1) timer = window.setInterval(() => (index.value = (index.value + 1) % slides.length), 4500)
+}
+function stopAuto() {
+  if (timer) {
+    window.clearInterval(timer)
+    timer = undefined
+  }
+}
+function prev() {
+  index.value = (index.value - 1 + slides.length) % slides.length
+}
+function next() {
+  index.value = (index.value + 1) % slides.length
+}
+function go(i: number) {
+  index.value = i % slides.length
+}
+
+onMounted(() => {
+  startAuto()
+  document.addEventListener('click', onClickOutside)
+})
+
+onUnmounted(() => {
+  stopAuto()
+  document.removeEventListener('click', onClickOutside)
+})
+
+// register form state
 interface RegisterFormState {
   area: string
   phone: string
@@ -204,28 +333,25 @@ interface RegisterFormState {
   invite: string
   agree: boolean
 }
-
-const langOpen = ref(false)
-const form = reactive<RegisterFormState>({
-  area: '86',
-  phone: '',
-  password: '',
-  confirm: '',
-  sms: '',
-  invite: '',
-  agree: false,
-})
+const form = reactive<RegisterFormState>({ area: '86', phone: '', password: '', confirm: '', sms: '', invite: '', agree: false })
 const showPwd = ref(false)
 const showConfirm = ref(false)
-
 const visibleIcon = 'https://www.saleyee.com/ContentNew/Images/visible.png'
 const hiddenIcon = 'https://www.saleyee.com/ContentNew/Images/invisible.png'
 
-const langLabel = computed(() => (currentLang.value === 'zh-CN' ? t('lang.zh') : t('lang.en')))
-
-function selectLang(code: LangCode) {
-  setLang(code)
-  langOpen.value = false
+function sendCode() {
+  alert('Mock: 发送验证码')
+}
+function nextStep() {
+  if (!form.phone || !form.password || !form.confirm || !form.agree) {
+    alert('请完整填写并同意协议')
+    return
+  }
+  if (form.password !== form.confirm) {
+    alert('两次输入的密码不一致')
+    return
+  }
+  alert('Mock register 下一步')
 }
 
 const areaOptions = [
@@ -446,410 +572,99 @@ const areaOptions = [
 </script>
 
 <style scoped>
-.register-page {
-  min-height: 100vh;
-  background: #ffffff;
-  color: #1f2937;
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+/* ====== Copied base styles from LoginPage ====== */
+.login-page { min-height: 100vh; background-color: #ffffff; color: #2d2d2d; display: flex; flex-direction: column; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; }
+.login-container { width: 1200px; margin: 0 auto; }
+.login-hero-wrap { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; }
+.login-header { border-bottom: 1px solid #f0f0f0; background-color: #ffffff; }
+.login-header__inner { height: 88px; display: flex; align-items: center; justify-content: space-between; }
+.login-logo img { height: 46px; display: block; }
+.login-header__actions { display: flex; align-items: center; gap: 28px; font-size: 14px; color: #262626; }
+.login-header__link { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+.login-header__link:hover { color: #cb261c; }
+.login-language { position: relative; }
+.login-language__btn { display: inline-flex; align-items: center; gap: 10px; color: #cb261c; cursor: pointer; background: transparent; border: none; }
+.login-language__icon { width: 16px; height: 16px; }
+.login-language__chevron { width: 12px; height: 12px; }
+.login-language__menu { position: absolute; right: 0; top: calc(100% + 6px); width: 120px; background: #fff; border: 1px solid #e5e5e5; border-radius: 6px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); z-index: 50; }
+.login-language__item { display: block; width: 100%; text-align: left; padding: 10px 12px; background: transparent; border: none; color: #444; cursor: pointer; }
+.login-language__item:hover { background: #f8fafc; }
+.login-language__item.is-active { color: #cb261c; }
+.login-main { padding: 36px 0 60px; flex: 1; }
+.login-hero { position: relative; height: 540px; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12); }
+.login-hero__stage { position: absolute; inset: 0; }
+.login-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.login-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(24, 8, 1, 0.68) 0%, rgba(24, 8, 1, 0.38) 44%, rgba(24, 8, 1, 0.08) 82%); pointer-events: none; }
+.login-hero__arrow { position: absolute; left: 34px; top: 50%; transform: translateY(-50%); width: 49px; height: 49px; border: none; background: transparent; color: #cbd5e1; z-index: 3; cursor: pointer; }
+.login-hero__arrow--right { left: auto; right: 34px; }
+.login-hero__arrow svg { width: 62%; height: 62%; }
+.login-hero__arrow:hover { color: #9ca3af; }
+.login-hero__dots { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; z-index: 3; }
+.login-hero__dots span { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.55); cursor: pointer; }
+.login-hero__dots .is-active { width: 12px; height: 12px; background-color: #ffb400; }
+
+/* ====== Register card (match register.html layout) ====== */
+.register-card { position: absolute; right: 200px; top: 50%; transform: translateY(-50%); width: 420px; padding: 22px 24px 20px; background-color: rgba(255, 255, 255, 0.97); border-radius: 18px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25); z-index: 4; backdrop-filter: blur(4px); }
+.register-card__tab { font-size: 24px; font-weight: 600; color: #cb261c; text-align: left; margin-bottom: 14px; }
+
+.reg-row { display: flex; gap: 12px; align-items: center; }
+.reg-row--split { align-items: flex-end; }
+.reg-field { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.reg-field--select { max-width: 180px; }
+.reg-label { font-size: 12px; color: #6b7280; }
+
+.reg-select { position: relative; }
+.reg-select select { appearance: none; width: 100%; height: 44px; border: 1px solid #e5e7eb; border-radius: 6px; background: #ffffff; padding: 0 28px 0 12px; font-size: 14px; color: #111827; }
+.reg-select__arrow { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #6b7280; font-size: 12px; pointer-events: none; }
+
+.reg-input { width: 100%; height: 44px; border: 1px solid #e5e7eb; border-radius: 6px; background: #ffffff; padding: 0 12px; font-size: 14px; color: #111827; outline: none; }
+
+.reg-input-wrap { position: relative; }
+.reg-eye { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0; width: 20px; height: 20px; cursor: pointer; }
+.reg-eye img { width: 18px; height: 18px; }
+.reg-input--with-eye { padding-left: 40px; }
+
+.reg-row--code { justify-content: space-between; gap: 12px; }
+.reg-code { height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #e5e7eb; background: #f9fafb; color: #1f2937; font-weight: 500; cursor: pointer; }
+.reg-code:hover { background: #f3f4f6; }
+
+.reg-agree { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: #4b5563; line-height: 1.4; margin: 8px 0 6px; }
+.reg-agree a { color: #cb261c; text-decoration: none; }
+.reg-agree a:hover { text-decoration: underline; }
+
+.reg-submit { width: 100%; height: 46px; border-radius: 6px; font-weight: 600; letter-spacing: 0.6px; background: #cb261c; border: none; color: #fff; cursor: pointer; margin-top: 4px; }
+.reg-submit:hover { background: #b02118; }
+
+.reg-login { margin-top: 10px; font-size: 13px; color: #6b7280; display: flex; justify-content: center; }
+.reg-login a { color: #6b7280; text-decoration: none; }
+.reg-login a span { color: #cb261c; margin-left: 2px; }
+
+/* Footer (copied) */
+.login-footer { background-color: #ffffff; padding: 52px 0 64px; border-top: 1px solid #f1f1f1; }
+.login-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 36px; }
+.login-footer__column h2 { font-size: 16px; font-weight: 600; color: #2a2a2a; margin-bottom: 18px; }
+.login-footer__column ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.login-footer__column a { font-size: 14px; color: #585858; text-decoration: none; transition: color 0.2s ease; }
+.login-footer__column a:hover { color: #cb261c; }
+.login-footer__column--social { display: flex; flex-direction: column; }
+.login-social { display: flex; gap: 16px; }
+.login-social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.login-footer__column--qr { display: flex; flex-direction: column; align-items: center; }
+.login-footer__qr { width: 140px; height: 140px; padding: 8px; border: 1px solid #e6e6e6; border-radius: 10px; background-color: #ffffff; }
+.login-footer__qr img { width: 100%; height: 100%; object-fit: cover; }
+.login-footer__bottom { margin-top: 48px; border-top: 1px solid #ededed; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #707070; }
+.login-footer__bottom a { color: inherit; text-decoration: none; }
+.login-footer__bottom a:hover { color: #cb261c; }
+.login-footer__station { display: inline-flex; align-items: center; gap: 10px; color: #2a2a2a; }
+.login-footer__station span { width: 12px; height: 12px; border-radius: 50%; background-color: #cb261c; display: inline-block; }
+
+@media (max-width: 1280px) {
+  .login-container { width: 100%; padding: 0 24px; }
+  .login-hero { height: 560px; }
+  .register-card { right: 162px; }
 }
 
-.register-header {
-  border-bottom: 1px solid #e5e7eb;
-  background: #ffffff;
-}
-
-.register-header__inner {
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-}
-
-.register-header__left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.register-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  color: #111827;
-  font-weight: 600;
-  font-size: 18px;
-}
-
-.register-brand img {
-  height: 44px;
-  display: block;
-}
-
-.register-header__title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #cb261c;
-}
-
-.register-header__right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  font-size: 14px;
-  color: #4b5563;
-}
-
-.register-header__link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.register-header__link:hover {
-  color: #cb261c;
-}
-
-.register-header__divider {
-  color: #d1d5db;
-}
-
-.register-language {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  color: #25313f;
-}
-
-.register-language img {
-  width: 20px;
-  height: 20px;
-}
-
-.register-language__icon {
-  font-size: 12px;
-  color: #25313f;
-}
-
-.register-main {
-  padding: 40px 0 72px;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 18%);
-}
-
-.register-main__container {
-  width: min(1280px, calc(100% - 32px));
-  margin: 0 auto;
-}
-
-.register-banner__col {
-  display: flex;
-  justify-content: center;
-}
-
-.register-banner {
-  position: relative;
-  width: 100%;
-  max-width: 640px;
-  height: 520px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.16);
-}
-
-.register-banner__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.register-banner__bullets {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-
-.register-banner__bullets span {
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.6);
-}
-
-.register-banner__bullets span.is-active {
-  background: #ffffff;
-  width: 11px;
-  height: 11px;
-}
-
-.register-card {
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
-  border: none;
-}
-
-:deep(.register-card .el-card__body) {
-  padding: 28px 28px 20px;
-}
-
-.register-card__title {
-  text-align: center;
-  font-size: 22px;
-  font-weight: 600;
-  color: #cb261c;
-  margin-bottom: 20px;
-}
-
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.register-form__row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.register-form__row--split {
-  align-items: flex-end;
-}
-
-.register-field {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.register-field--select {
-  max-width: 180px;
-}
-
-.register-field label {
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.register-field--input label {
-  display: none;
-}
-
-.register-field--select label {
-  display: block;
-}
-
-.register-form__row--code {
-  justify-content: space-between;
-}
-
-.register-form__row--code .register-input {
-  flex: 1;
-}
-
-.register-code {
-  height: 44px;
-  padding: 0 18px;
-  border-radius: 6px;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
-  color: #1f2937;
-  font-weight: 500;
-}
-
-.register-code:hover,
-.register-code:focus {
-  background: #f3f4f6;
-  color: #1f2937;
-}
-
-.register-input :deep(.el-input__wrapper),
-.register-select :deep(.el-input__wrapper) {
-  box-shadow: none !important;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 0 12px;
-  height: 44px;
-  background-color: #ffffff;
-}
-
-.register-select :deep(.el-input__wrapper) {
-  padding-right: 32px;
-}
-
-.register-input :deep(.el-input__inner) {
-  font-size: 14px;
-  color: #111827;
-}
-
-.register-input :deep(.el-input__suffix) {
-  display: flex;
-  align-items: center;
-}
-
-.register-eye {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-}
-
-.register-eye img {
-  width: 18px;
-  height: 18px;
-}
-
-.register-agree {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 13px;
-  color: #4b5563;
-  line-height: 1.4;
-}
-
-.register-agree a {
-  color: #cb261c;
-  text-decoration: none;
-}
-
-.register-agree a:hover {
-  text-decoration: underline;
-}
-
-.register-submit {
-  width: 100%;
-  height: 46px;
-  border-radius: 6px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  background: #cb261c;
-  border: none;
-}
-
-.register-submit:hover,
-.register-submit:focus {
-  background: #b02118;
-}
-
-.register-login {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #6b7280;
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-}
-
-.register-login a {
-  color: #cb261c;
-  text-decoration: none;
-}
-
-.register-login a:hover {
-  text-decoration: underline;
-}
-
-.register-footer {
-  border-top: 1px solid #e5e7eb;
-  padding: 24px 0;
-  background: #ffffff;
-  color: #6b7280;
-  font-size: 13px;
-}
-
-.register-footer__inner {
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 16px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-@media (max-width: 1200px) {
-  .register-banner {
-    height: 420px;
-  }
-
-  .register-field--select {
-    max-width: 160px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .register-main {
-    padding: 32px 0 60px;
-  }
-
-  .register-main__row {
-    flex-direction: column;
-  }
-
-  .register-banner {
-    height: 340px;
-    margin-bottom: 24px;
-  }
-
-  .register-field--select {
-    max-width: 100%;
-  }
-
-  .register-form__row--split {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .register-form__row--split .register-field {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .register-header__inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .register-header__title {
-    font-size: 18px;
-  }
-
-  .register-main {
-    padding: 24px 0 48px;
-  }
-
-  .register-banner {
-    height: 260px;
-  }
-
-  .register-card {
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
-  }
-
-  :deep(.register-card .el-card__body) {
-    padding: 22px 20px 18px;
-  }
-}
+/* transitions for carousel */
+.fade-enter-active, .fade-leave-active { transition: opacity 0.6s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
