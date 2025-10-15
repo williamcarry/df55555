@@ -7,7 +7,9 @@
           <img src="https://www.saleyee.com/Content/Images/logo.png" alt="SaleYee" />
         </a>
         <div class="login-header__actions">
-          <a class="login-header__link" href="/getting-started.html">{{ t('header.gettingStarted') }}</a>
+          <a class="login-header__link" href="/getting-started.html">{{
+            t('header.gettingStarted')
+          }}</a>
 
           <div class="login-language" ref="langRef">
             <button
@@ -65,10 +67,49 @@
 
           <div class="login-hero__inner">
             <button class="login-hero__arrow" type="button" aria-label="上一张" @click="prev">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.3" /><path d="M13.8 8.5 10.3 12l3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" /></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="11"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M13.8 8.5 10.3 12l3.5 3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.6"
+                />
+              </svg>
             </button>
-            <button class="login-hero__arrow login-hero__arrow--right" type="button" aria-label="下一张" @click="next">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.3" /><path d="M10.2 8.5 13.7 12l-3.5 3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" /></svg>
+            <button
+              class="login-hero__arrow login-hero__arrow--right"
+              type="button"
+              aria-label="下一张"
+              @click="next"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="11"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M10.2 8.5 13.7 12l-3.5 3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.6"
+                />
+              </svg>
             </button>
 
             <!-- Register Card (matches saleyee.com/register.html layout) -->
@@ -81,7 +122,9 @@
                   <label class="reg-label">{{ t('register.area') }}</label>
                   <div class="reg-select">
                     <select v-model="form.area" aria-label="地区区号">
-                      <option v-for="o in areaOptions" :key="o.value" :value="o.value">{{ o.label }}</option>
+                      <option v-for="o in areaOptions" :key="o.value" :value="o.value">
+                        {{ o.label }}
+                      </option>
                     </select>
                     <span class="reg-select__arrow" aria-hidden="true">▾</span>
                   </div>
@@ -102,7 +145,12 @@
               <!-- Password -->
               <div class="reg-field">
                 <div class="reg-input-wrap">
-                  <button type="button" class="reg-eye" @click="showPwd = !showPwd" aria-label="切换密码可见性">
+                  <button
+                    type="button"
+                    class="reg-eye"
+                    @click="showPwd = !showPwd"
+                    aria-label="切换密码可见性"
+                  >
                     <img :src="showPwd ? visibleIcon : hiddenIcon" alt="" />
                   </button>
                   <input
@@ -119,7 +167,12 @@
               <!-- Confirm Password -->
               <div class="reg-field">
                 <div class="reg-input-wrap">
-                  <button type="button" class="reg-eye" @click="showConfirm = !showConfirm" aria-label="切换确认密码可见性">
+                  <button
+                    type="button"
+                    class="reg-eye"
+                    @click="showConfirm = !showConfirm"
+                    aria-label="切换确认密码可见性"
+                  >
                     <img :src="showConfirm ? visibleIcon : hiddenIcon" alt="" />
                   </button>
                   <input
@@ -165,7 +218,8 @@
                 <input id="agree" type="checkbox" v-model="form.agree" />
                 <label for="agree">
                   我已阅读并同意
-                  <a href="/PrivacyDetails/1.html" target="_blank" rel="noreferrer">《服务条款》</a> -
+                  <a href="/PrivacyDetails/1.html" target="_blank" rel="noreferrer">《服务条款》</a>
+                  -
                   <a href="/PrivacyDetails/2.html" target="_blank" rel="noreferrer">《隐私协议》</a>
                 </label>
               </div>
@@ -180,7 +234,12 @@
             </div>
 
             <div class="login-hero__dots" aria-hidden="true">
-              <span v-for="(s, i) in slides" :key="'dot-' + i" :class="i === index ? 'is-active' : ''" @click="go(i)"></span>
+              <span
+                v-for="(s, i) in slides"
+                :key="'dot-' + i"
+                :class="i === index ? 'is-active' : ''"
+                @click="go(i)"
+              ></span>
             </div>
           </div>
         </section>
@@ -194,50 +253,134 @@
           <div class="login-footer__column">
             <h2>{{ t('footer.about') }}</h2>
             <ul>
-              <li><a href="https://www.saleyee.com/about-saleyee.html" target="_blank" rel="noreferrer">赛盈简介</a></li>
+              <li>
+                <a
+                  href="https://www.saleyee.com/about-saleyee.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >赛盈简介</a
+                >
+              </li>
               <li><a href="/membership.html" target="_blank" rel="noreferrer">会员权益</a></li>
-              <li><a href="https://blog.saleyee.com" target="_blank" rel="noreferrer">赛盈学院</a></li>
-              <li><a href="https://www.saleyee.com/contact-us.html" target="_blank" rel="noreferrer">联系我们</a></li>
+              <li>
+                <a href="https://blog.saleyee.com" target="_blank" rel="noreferrer">赛盈学院</a>
+              </li>
+              <li>
+                <a href="https://www.saleyee.com/contact-us.html" target="_blank" rel="noreferrer"
+                  >联系我们</a
+                >
+              </li>
             </ul>
           </div>
           <div class="login-footer__column">
             <h2>{{ t('footer.customer') }}</h2>
             <ul>
-              <li><a href="https://www.saleyee.com/help-center.html" target="_blank" rel="noreferrer">帮助中心</a></li>
-              <li><a href="https://www.saleyee.com/faq/hp246053.html" target="_blank" rel="noreferrer">售后条款</a></li>
-              <li><a href="https://www.saleyee.com/guide/hp062361.html" target="_blank" rel="noreferrer">支付方式</a></li>
-              <li><a href="https://www.saleyee.com/faq/hp981158.html" target="_blank" rel="noreferrer">物流方式</a></li>
+              <li>
+                <a href="https://www.saleyee.com/help-center.html" target="_blank" rel="noreferrer"
+                  >帮助中心</a
+                >
+              </li>
+              <li>
+                <a href="https://www.saleyee.com/faq/hp246053.html" target="_blank" rel="noreferrer"
+                  >售后条款</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.saleyee.com/guide/hp062361.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >支付方式</a
+                >
+              </li>
+              <li>
+                <a href="https://www.saleyee.com/faq/hp981158.html" target="_blank" rel="noreferrer"
+                  >物流方式</a
+                >
+              </li>
               <li><a href="/help/14.html" target="_blank" rel="noreferrer">VAT政策解读</a></li>
-              <li><a href="https://www.saleyee.com/feedback.html" target="_blank" rel="noreferrer">体验反馈</a></li>
+              <li>
+                <a href="https://www.saleyee.com/feedback.html" target="_blank" rel="noreferrer"
+                  >体验反馈</a
+                >
+              </li>
             </ul>
           </div>
           <div class="login-footer__column">
             <h2>{{ t('footer.partners') }}</h2>
             <ul>
-              <li><a href="https://www.saleyee.com/distributors.html" target="_blank" rel="noreferrer">跨境卖家入驻</a></li>
-              <li><a href="https://supplier.saleyee.cn/?invitationCode=LeJWrx" target="_blank" rel="noreferrer">供应商入驻</a></li>
-              <li><a href="https://www.saleyee.com/partners.html" target="_blank" rel="noreferrer">合作伙伴</a></li>
+              <li>
+                <a href="https://www.saleyee.com/distributors.html" target="_blank" rel="noreferrer"
+                  >跨境卖家入驻</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://supplier.saleyee.cn/?invitationCode=LeJWrx"
+                  target="_blank"
+                  rel="noreferrer"
+                  >供应商入驻</a
+                >
+              </li>
+              <li>
+                <a href="https://www.saleyee.com/partners.html" target="_blank" rel="noreferrer"
+                  >合作伙伴</a
+                >
+              </li>
               <li><a href="/help/51.html" target="_blank" rel="noreferrer">商务合作</a></li>
             </ul>
           </div>
           <div class="login-footer__column login-footer__column--social">
             <h2>{{ t('footer.weixin') }}</h2>
             <div class="login-social">
-              <a href="https://v.qq.com/s/videoplus/2791751583" target="_blank" rel="noreferrer" aria-label="腾讯视频">
-                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M17.5 12.5 26 19l-8.5 6.5z" fill="#fff" /></svg>
+              <a
+                href="https://v.qq.com/s/videoplus/2791751583"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="腾讯视频"
+              >
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                  <circle cx="20" cy="20" r="20" fill="#1f1f1f" />
+                  <path d="M17.5 12.5 26 19l-8.5 6.5z" fill="#fff" />
+                </svg>
               </a>
-              <a href="https://www.iqiyi.com/u/1639384380" target="_blank" rel="noreferrer" aria-label="爱奇艺">
-                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M12.5 19.2c0-4 2.6-6.7 7.6-6.7h2.6c3.4 0 5.3 1.4 5.3 5.2v4.6c0 3.9-1.9 5.2-5.3 5.2h-2.6c-5 0-7.6-2.7-7.6-6.8zm5.4 0c0 2.2 1 3.4 3.1 3.4h1.3c1.9 0 2.7-.6 2.7-2.7v-1.4c0-2.2-.8-2.8-2.7-2.8h-1.3c-2.1 0-3.1 1.1-3.1 3.5z" fill="#fff" /></svg>
+              <a
+                href="https://www.iqiyi.com/u/1639384380"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="爱奇艺"
+              >
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                  <circle cx="20" cy="20" r="20" fill="#1f1f1f" />
+                  <path
+                    d="M12.5 19.2c0-4 2.6-6.7 7.6-6.7h2.6c3.4 0 5.3 1.4 5.3 5.2v4.6c0 3.9-1.9 5.2-5.3 5.2h-2.6c-5 0-7.6-2.7-7.6-6.8zm5.4 0c0 2.2 1 3.4 3.1 3.4h1.3c1.9 0 2.7-.6 2.7-2.7v-1.4c0-2.2-.8-2.8-2.7-2.8h-1.3c-2.1 0-3.1 1.1-3.1 3.5z"
+                    fill="#fff"
+                  />
+                </svg>
               </a>
-              <a href="https://space.bilibili.com/517583603" target="_blank" rel="noreferrer" aria-label="哔哩哔哩">
-                <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="20" fill="#1f1f1f" /><path d="M13.5 13h13c2.4 0 3.5 1.1 3.5 3.5v7c0 2.4-1.1 3.5-3.5 3.5h-13c-2.4 0-3.5-1.1-3.5-3.5v-7c0-2.4 1.1-3.5 3.5-3.5zm1.7 4.2c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6zm10.6 0c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6z" fill="#fff" /></svg>
+              <a
+                href="https://space.bilibili.com/517583603"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="哔哩哔哩"
+              >
+                <svg viewBox="0 0 40 40" aria-hidden="true">
+                  <circle cx="20" cy="20" r="20" fill="#1f1f1f" />
+                  <path
+                    d="M13.5 13h13c2.4 0 3.5 1.1 3.5 3.5v7c0 2.4-1.1 3.5-3.5 3.5h-13c-2.4 0-3.5-1.1-3.5-3.5v-7c0-2.4 1.1-3.5 3.5-3.5zm1.7 4.2c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6zm10.6 0c-.9 0-1.6.7-1.6 1.6s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6z"
+                    fill="#fff"
+                  />
+                </svg>
               </a>
             </div>
           </div>
           <div class="login-footer__column login-footer__column--qr">
             <h2>赛盈官方微信</h2>
             <div class="login-footer__qr">
-              <img src="https://www.saleyee.com/ContentNew/Images/2021/December/saleyee-weixin.png" alt="赛盈官方微信" />
+              <img
+                src="https://www.saleyee.com/ContentNew/Images/2021/December/saleyee-weixin.png"
+                alt="赛盈官方微信"
+              />
             </div>
           </div>
         </div>
@@ -248,7 +391,8 @@
             <p>International</p>
           </div>
           <p>
-            © 2025 <a href="/" rel="noreferrer">Saleyee.com</a> Tengming Limited | <a href="/sitemap.html" target="_blank" rel="noreferrer">网站地图</a>
+            © 2025 <a href="/" rel="noreferrer">Saleyee.com</a> Tengming Limited |
+            <a href="/sitemap.html" target="_blank" rel="noreferrer">网站地图</a>
           </p>
         </div>
       </div>
@@ -288,14 +432,16 @@ const slides = [
 ]
 const index = ref(0)
 let timer: number | undefined
-const fallbackHero = 'https://resource.saleyee.com/UploadFiles/Images/2022/202204/49ae70d5-7089-46ae-bca9-67901afde1f7.jpg'
+const fallbackHero =
+  'https://resource.saleyee.com/UploadFiles/Images/2022/202204/49ae70d5-7089-46ae-bca9-67901afde1f7.jpg'
 function onHeroError(event: Event) {
   const target = event.target as HTMLImageElement
   if (target && target.src !== fallbackHero) target.src = fallbackHero
 }
 function startAuto() {
   stopAuto()
-  if (slides.length > 1) timer = window.setInterval(() => (index.value = (index.value + 1) % slides.length), 4500)
+  if (slides.length > 1)
+    timer = window.setInterval(() => (index.value = (index.value + 1) % slides.length), 4500)
 }
 function stopAuto() {
   if (timer) {
@@ -333,7 +479,15 @@ interface RegisterFormState {
   invite: string
   agree: boolean
 }
-const form = reactive<RegisterFormState>({ area: '86', phone: '', password: '', confirm: '', sms: '', invite: '', agree: false })
+const form = reactive<RegisterFormState>({
+  area: '86',
+  phone: '',
+  password: '',
+  confirm: '',
+  sms: '',
+  invite: '',
+  agree: false,
+})
 const showPwd = ref(false)
 const showConfirm = ref(false)
 const visibleIcon = 'https://www.saleyee.com/ContentNew/Images/visible.png'
@@ -573,100 +727,484 @@ const areaOptions = [
 
 <style scoped>
 /* ====== Copied base styles from LoginPage ====== */
-.login-page { min-height: 100vh; background-color: #ffffff; color: #2d2d2d; display: flex; flex-direction: column; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; }
-.login-container { width: 1200px; margin: 0 auto; }
-.login-hero-wrap { width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; }
-.login-header { border-bottom: 1px solid #f0f0f0; background-color: #ffffff; }
-.login-header__inner { height: 88px; display: flex; align-items: center; justify-content: space-between; }
-.login-logo img { height: 46px; display: block; }
-.login-header__actions { display: flex; align-items: center; gap: 28px; font-size: 14px; color: #262626; }
-.login-header__link { color: inherit; text-decoration: none; transition: color 0.2s ease; }
-.login-header__link:hover { color: #cb261c; }
-.login-language { position: relative; }
-.login-language__btn { display: inline-flex; align-items: center; gap: 10px; color: #cb261c; cursor: pointer; background: transparent; border: none; }
-.login-language__icon { width: 16px; height: 16px; }
-.login-language__chevron { width: 12px; height: 12px; }
-.login-language__menu { position: absolute; right: 0; top: calc(100% + 6px); width: 120px; background: #fff; border: 1px solid #e5e5e5; border-radius: 6px; box-shadow: 0 10px 20px rgba(0,0,0,0.08); z-index: 50; }
-.login-language__item { display: block; width: 100%; text-align: left; padding: 10px 12px; background: transparent; border: none; color: #444; cursor: pointer; }
-.login-language__item:hover { background: #f8fafc; }
-.login-language__item.is-active { color: #cb261c; }
-.login-main { padding: 36px 0 60px; flex: 1; }
-.login-hero { position: relative; height: 540px; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12); }
-.login-hero__stage { position: absolute; inset: 0; }
-.login-hero__image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.login-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(24, 8, 1, 0.68) 0%, rgba(24, 8, 1, 0.38) 44%, rgba(24, 8, 1, 0.08) 82%); pointer-events: none; }
-.login-hero__arrow { position: absolute; left: 34px; top: 50%; transform: translateY(-50%); width: 49px; height: 49px; border: none; background: transparent; color: #cbd5e1; z-index: 3; cursor: pointer; }
-.login-hero__arrow--right { left: auto; right: 34px; }
-.login-hero__arrow svg { width: 62%; height: 62%; }
-.login-hero__arrow:hover { color: #9ca3af; }
-.login-hero__dots { position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; z-index: 3; }
-.login-hero__dots span { width: 10px; height: 10px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.55); cursor: pointer; }
-.login-hero__dots .is-active { width: 12px; height: 12px; background-color: #ffb400; }
+.login-page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #2d2d2d;
+  display: flex;
+  flex-direction: column;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+}
+.login-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.login-hero-wrap {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+.login-header {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #ffffff;
+}
+.login-header__inner {
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.login-logo img {
+  height: 46px;
+  display: block;
+}
+.login-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+  color: #262626;
+}
+.login-header__link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.login-header__link:hover {
+  color: #cb261c;
+}
+.login-language {
+  position: relative;
+}
+.login-language__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #cb261c;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+.login-language__icon {
+  width: 16px;
+  height: 16px;
+}
+.login-language__chevron {
+  width: 12px;
+  height: 12px;
+}
+.login-language__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  width: 120px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  z-index: 50;
+}
+.login-language__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: #444;
+  cursor: pointer;
+}
+.login-language__item:hover {
+  background: #f8fafc;
+}
+.login-language__item.is-active {
+  color: #cb261c;
+}
+.login-main {
+  padding: 36px 0 60px;
+  flex: 1;
+}
+.login-hero {
+  position: relative;
+  height: 540px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+.login-hero__stage {
+  position: absolute;
+  inset: 0;
+}
+.login-hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.login-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 8, 1, 0.68) 0%,
+    rgba(24, 8, 1, 0.38) 44%,
+    rgba(24, 8, 1, 0.08) 82%
+  );
+  pointer-events: none;
+}
+.login-hero__arrow {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 49px;
+  height: 49px;
+  border: none;
+  background: transparent;
+  color: #cbd5e1;
+  z-index: 3;
+  cursor: pointer;
+}
+.login-hero__arrow--right {
+  left: auto;
+  right: 34px;
+}
+.login-hero__arrow svg {
+  width: 62%;
+  height: 62%;
+}
+.login-hero__arrow:hover {
+  color: #9ca3af;
+}
+.login-hero__dots {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+.login-hero__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+}
+.login-hero__dots .is-active {
+  width: 12px;
+  height: 12px;
+  background-color: #ffb400;
+}
 
 /* ====== Register card (match register.html layout) ====== */
-.register-card { position: absolute; right: 200px; top: 50%; transform: translateY(-50%); width: 420px; padding: 22px 24px 20px; background-color: rgba(255, 255, 255, 0.97); border-radius: 18px; box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25); z-index: 4; backdrop-filter: blur(4px); }
-.register-card__tab { font-size: 24px; font-weight: 600; color: #cb261c; text-align: left; margin-bottom: 14px; }
+.register-card {
+  position: absolute;
+  right: 200px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px;
+  padding: 22px 24px 20px;
+  background-color: rgba(255, 255, 255, 0.97);
+  border-radius: 18px;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25);
+  z-index: 4;
+  backdrop-filter: blur(4px);
+}
+.register-card__tab {
+  font-size: 24px;
+  font-weight: 600;
+  color: #cb261c;
+  text-align: left;
+  margin-bottom: 14px;
+}
 
-.reg-row { display: flex; gap: 12px; align-items: center; }
-.reg-row--split { align-items: flex-end; }
-.reg-field { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-.reg-field--select { max-width: 180px; }
-.reg-label { font-size: 12px; color: #6b7280; }
+.reg-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.reg-row--split {
+  align-items: flex-end;
+}
+.reg-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.reg-field--select {
+  max-width: 180px;
+}
+.reg-label {
+  font-size: 12px;
+  color: #6b7280;
+}
 
-.reg-select { position: relative; }
-.reg-select select { appearance: none; width: 100%; height: 44px; border: 1px solid #e5e7eb; border-radius: 6px; background: #ffffff; padding: 0 28px 0 12px; font-size: 14px; color: #111827; }
-.reg-select__arrow { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #6b7280; font-size: 12px; pointer-events: none; }
+.reg-select {
+  position: relative;
+}
+.reg-select select {
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0 28px 0 12px;
+  font-size: 14px;
+  color: #111827;
+}
+.reg-select__arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  font-size: 12px;
+  pointer-events: none;
+}
 
-.reg-input { width: 100%; height: 44px; border: 1px solid #e5e7eb; border-radius: 6px; background: #ffffff; padding: 0 12px; font-size: 14px; color: #111827; outline: none; }
+.reg-input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #ffffff;
+  padding: 0 12px;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+}
 
-.reg-input-wrap { position: relative; }
-.reg-eye { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); border: none; background: transparent; padding: 0; width: 20px; height: 20px; cursor: pointer; }
-.reg-eye img { width: 18px; height: 18px; }
-.reg-input--with-eye { padding-left: 40px; }
+.reg-input-wrap {
+  position: relative;
+}
+.reg-eye {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.reg-eye img {
+  width: 18px;
+  height: 18px;
+}
+.reg-input--with-eye {
+  padding-left: 40px;
+}
 
-.reg-row--code { justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 14px; }
-.reg-row--code .reg-input { flex: 1 1 auto; min-width: 0; }
-.reg-code { height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid #e5e7eb; background: #f9fafb; color: #1f2937; font-weight: 500; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
-.reg-code:hover { background: #f3f4f6; }
+.reg-row--code {
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.reg-row--code .reg-input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.reg-code {
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #1f2937;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.reg-code:hover {
+  background: #f3f4f6;
+}
 
-.reg-agree { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #4b5563; line-height: 1.4; margin: 8px 0 6px; }
-.reg-agree a { color: #cb261c; text-decoration: none; }
-.reg-agree input[type='checkbox'] { width: 16px; height: 16px; }
-.reg-agree a:hover { text-decoration: underline; }
+.reg-agree {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.4;
+  margin: 8px 0 6px;
+}
+.reg-agree a {
+  color: #cb261c;
+  text-decoration: none;
+}
+.reg-agree input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+}
+.reg-agree a:hover {
+  text-decoration: underline;
+}
 
-.reg-submit { width: 100%; height: 46px; border-radius: 6px; font-weight: 600; letter-spacing: 0.6px; background: #cb261c; border: none; color: #fff; cursor: pointer; margin-top: 4px; }
-.reg-submit:hover { background: #b02118; }
+.reg-submit {
+  width: 100%;
+  height: 46px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  background: #cb261c;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.reg-submit:hover {
+  background: #b02118;
+}
 
-.reg-login { margin-top: 10px; font-size: 13px; color: #6b7280; display: flex; justify-content: center; }
-.reg-login a { color: #6b7280; text-decoration: none; }
-.reg-login a span { color: #cb261c; margin-left: 2px; }
+.reg-login {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #6b7280;
+  display: flex;
+  justify-content: center;
+}
+.reg-login a {
+  color: #6b7280;
+  text-decoration: none;
+}
+.reg-login a span {
+  color: #cb261c;
+  margin-left: 2px;
+}
 
 /* Footer (copied) */
-.login-footer { background-color: #ffffff; padding: 52px 0 64px; border-top: 1px solid #f1f1f1; }
-.login-footer__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 36px; }
-.login-footer__column h2 { font-size: 16px; font-weight: 600; color: #2a2a2a; margin-bottom: 18px; }
-.login-footer__column ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-.login-footer__column a { font-size: 14px; color: #585858; text-decoration: none; transition: color 0.2s ease; }
-.login-footer__column a:hover { color: #cb261c; }
-.login-footer__column--social { display: flex; flex-direction: column; }
-.login-social { display: flex; gap: 16px; }
-.login-social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-.login-footer__column--qr { display: flex; flex-direction: column; align-items: center; }
-.login-footer__qr { width: 140px; height: 140px; padding: 8px; border: 1px solid #e6e6e6; border-radius: 10px; background-color: #ffffff; }
-.login-footer__qr img { width: 100%; height: 100%; object-fit: cover; }
-.login-footer__bottom { margin-top: 48px; border-top: 1px solid #ededed; padding-top: 22px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #707070; }
-.login-footer__bottom a { color: inherit; text-decoration: none; }
-.login-footer__bottom a:hover { color: #cb261c; }
-.login-footer__station { display: inline-flex; align-items: center; gap: 10px; color: #2a2a2a; }
-.login-footer__station span { width: 12px; height: 12px; border-radius: 50%; background-color: #cb261c; display: inline-block; }
+.login-footer {
+  background-color: #ffffff;
+  padding: 52px 0 64px;
+  border-top: 1px solid #f1f1f1;
+}
+.login-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 36px;
+}
+.login-footer__column h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2a2a;
+  margin-bottom: 18px;
+}
+.login-footer__column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.login-footer__column a {
+  font-size: 14px;
+  color: #585858;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.login-footer__column a:hover {
+  color: #cb261c;
+}
+.login-footer__column--social {
+  display: flex;
+  flex-direction: column;
+}
+.login-social {
+  display: flex;
+  gap: 16px;
+}
+.login-social a {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-footer__column--qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-footer__qr {
+  width: 140px;
+  height: 140px;
+  padding: 8px;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.login-footer__qr img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.login-footer__bottom {
+  margin-top: 48px;
+  border-top: 1px solid #ededed;
+  padding-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #707070;
+}
+.login-footer__bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+.login-footer__bottom a:hover {
+  color: #cb261c;
+}
+.login-footer__station {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #2a2a2a;
+}
+.login-footer__station span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #cb261c;
+  display: inline-block;
+}
 
 @media (max-width: 1280px) {
-  .login-container { width: 100%; padding: 0 24px; }
-  .login-hero { height: 560px; }
-  .register-card { right: 162px; }
+  .login-container {
+    width: 100%;
+    padding: 0 24px;
+  }
+  .login-hero {
+    height: 560px;
+  }
+  .register-card {
+    right: 162px;
+  }
 }
 
 /* transitions for carousel */
-.fade-enter-active, .fade-leave-active { transition: opacity 0.6s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.6s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
