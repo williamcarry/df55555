@@ -112,46 +112,43 @@
           </el-col>
 
           <el-col :xs="24" :md="5">
-            <div class="bg-white rounded-lg border border-slate-200 p-6 sticky top-6">
-              <h3 class="text-lg font-semibold text-slate-900 mb-5">合计</h3>
+            <div class="bg-white rounded-lg border border-slate-200 p-5 sticky top-6">
+              <h3 class="text-base font-medium text-slate-900 mb-4">合计</h3>
 
-              <div class="space-y-3 mb-6 text-sm">
+              <div class="space-y-3 mb-4 text-xs">
+                <div class="flex justify-between">
+                  <span class="text-slate-600">SKU(件)：</span>
+                  <span class="text-slate-900">0</span>
+                  <span class="text-slate-600">商品数量(件)：</span>
+                  <span class="text-slate-900">0</span>
+                </div>
+              </div>
+
+              <div class="space-y-2 mb-5 text-sm">
                 <div class="flex justify-between">
                   <span class="text-slate-600">商品合计：</span>
-                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
+                  <span class="text-slate-900">0.00</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-slate-600">商品运费：</span>
-                  <span class="text-slate-900 font-medium">0.00</span>
+                  <span class="text-slate-600">采购券减免：</span>
+                  <span class="text-slate-900">-0.00</span>
                 </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-600">运费优惠：</span>
-                  <span class="text-slate-900 font-medium">-0.00</span>
-                </div>
-                <div class="flex justify-between border-t border-slate-200 pt-3">
-                  <span class="text-slate-600">应付费用：</span>
-                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
+                <div class="flex justify-between text-primary font-semibold">
+                  <span>应付总额：</span>
+                  <span>0.00</span>
                 </div>
               </div>
 
-              <div class="text-center py-4 mb-6">
-                <div class="text-xs text-slate-600 mb-1">需支付金额</div>
-                <div class="text-4xl font-bold text-primary">{{ productTotal }}</div>
-              </div>
+              <el-button type="danger" size="large" class="w-full mb-4">去结算</el-button>
 
-              <div class="space-y-2 mb-6 text-sm border-t border-slate-200 pt-4">
-                <div class="flex justify-between">
-                  <span class="text-slate-600">应付费用：</span>
-                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
+              <div class="text-xs text-slate-500 leading-relaxed">
+                <div class="flex items-start gap-1">
+                  <span class="flex-shrink-0">ⓘ</span>
+                  <div>
+                    <p>税费、保障服务费和其他说明信息</p>
+                    <p>在下个页面计算</p>
+                  </div>
                 </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-600">应收费用：</span>
-                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
-                </div>
-              </div>
-
-              <div class="flex gap-2">
-                <el-button type="primary" size="large" class="flex-1">立即购买</el-button>
               </div>
             </div>
           </el-col>
