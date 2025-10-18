@@ -34,15 +34,14 @@
         <el-row :gutter="20">
           <el-col :xs="24" :md="19">
             <div class="bg-white rounded-lg border border-slate-200">
-              <div class="grid grid-cols-12 gap-4 p-4 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
+              <div class="grid grid-cols-12 gap-3 p-4 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
                 <div class="col-span-1">
                   <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" class="w-4 h-4" />
                 </div>
                 <div class="col-span-5">商品</div>
-                <div class="col-span-2">价格</div>
-                <div class="col-span-2">数量</div>
-                <div class="col-span-2">小计</div>
-                <div class="col-span-1">操作</div>
+                <div class="col-span-2 text-right">价格</div>
+                <div class="col-span-2 text-center">数量</div>
+                <div class="col-span-2 text-right">小计</div>
               </div>
 
               <div v-if="cartItems.length > 0">
