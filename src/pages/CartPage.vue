@@ -46,63 +46,73 @@
               </div>
 
               <div v-if="cartItems.length > 0">
-                <div
-                  v-for="(item, index) in cartItems"
-                  :key="index"
-                  :class="[
-                    'grid grid-cols-12 gap-4 p-4 border-b border-slate-200 items-center text-sm',
-                    index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
-                  ]"
-                >
-                  <div class="col-span-1">
-                    <input type="checkbox" v-model="item.selected" class="w-4 h-4" />
+                <div v-for="(group, groupIndex) in groupedItems" :key="groupIndex">
+                  <div class="grid grid-cols-12 gap-4 p-3 bg-slate-100 border-b border-slate-200 items-center text-xs font-medium text-slate-700">
+                    <div class="col-span-1"></div>
+                    <div class="col-span-11 flex items-center gap-2">
+                      <span v-if="group.region === 'US'" class="text-base">🇺🇸</span>
+                      <span v-else-if="group.region === 'UK'" class="text-base">🇬🇧</span>
+                      <span>{{ group.region }} - {{ group.shipping }} ({{ group.items.length }})</span>
+                      <span class="ml-auto text-slate-500">
+                        <span class="inline-flex items-center gap-1 text-xs">
+                          <i class="el-icon-d-arrow-right"></i>删除选中商品(0)
+                        </span>
+                      </span>
+                      <span class="text-slate-500">
+                        <span class="inline-flex items-center gap-1 text-xs">
+                          ◯选中此运费方式商品(0)
+                        </span>
+                      </span>
+                    </div>
                   </div>
 
-                  <div class="col-span-6 flex gap-4">
-                    <div class="w-20 h-20 bg-slate-100 rounded flex-shrink-0 overflow-hidden">
-                      <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
+                  <div v-for="(item, itemIndex) in group.items" :key="item.id" class="grid grid-cols-12 gap-3 p-4 border-b border-slate-200 items-center text-sm bg-white">
+                    <div class="col-span-1">
+                      <input type="checkbox" v-model="item.selected" class="w-4 h-4" />
                     </div>
-                    <div class="flex-1 min-w-0">
-                      <div class="text-slate-900 font-medium truncate">{{ item.name }}</div>
-                      <div class="text-slate-600 text-xs mt-1">SKU: {{ item.sku }}</div>
-                      <div class="text-slate-600 text-xs mt-1">运费区：{{ item.region }}</div>
-                      <div class="text-slate-600 text-xs mt-2">
-                        <span
-                          v-if="item.shipping"
-                          class="inline-block bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs"
-                        >
-                          {{ item.shipping }}
-                        </span>
+
+                    <div class="col-span-5 flex gap-3">
+                      <div class="w-16 h-16 bg-slate-100 rounded flex-shrink-0 overflow-hidden">
+                        <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-slate-900 font-medium text-sm line-clamp-2">{{ item.name }}</div>
+                        <div class="text-slate-500 text-xs mt-1">SKU: {{ item.sku }}</div>
+                        <div class="text-slate-500 text-xs">可售库存：13</div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-span-2">
-                    <div class="text-primary font-semibold">{{ item.price }}</div>
-                    <div class="text-slate-500 line-through text-xs">{{ item.originalPrice }}</div>
-                  </div>
-
-                  <div class="col-span-2">
-                    <div class="flex items-center justify-center border border-slate-300 rounded w-16">
-                      <button @click="decrementQty(index)" class="px-1 py-0.5 text-slate-600 hover:bg-slate-50 text-center">
-                        -
-                      </button>
-                      <input
-                        v-model.number="item.quantity"
-                        type="number"
-                        class="w-8 text-center border-l border-r border-slate-300 py-0.5 outline-none text-sm h-full"
-                        @change="updateQuantity(index, item.quantity)"
-                      />
-                      <button @click="incrementQty(index)" class="px-1 py-0.5 text-slate-600 hover:bg-slate-50 text-center">
-                        +
-                      </button>
+                    <div class="col-span-2 text-right">
+                      <div class="text-primary font-semibold text-sm">{{ item.price }}</div>
+                      <div class="text-slate-500 line-through text-xs">{{ item.originalPrice }}</div>
                     </div>
-                  </div>
 
-                  <div class="col-span-1 text-center">
-                    <button @click="removeItem(index)" class="text-primary hover:text-primary text-sm">
-                      ���除
-                    </button>
+                    <div class="col-span-2 flex justify-center">
+                      <div class="flex items-center border border-slate-300 rounded bg-white">
+                        <button @click="decrementQty(cartItems.indexOf(item))" class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm">
+                          −
+                        </button>
+                        <input
+                          v-model.number="item.quantity"
+                          type="number"
+                          class="w-10 text-center border-l border-r border-slate-300 py-1 outline-none text-sm"
+                          @change="updateQuantity(cartItems.indexOf(item), item.quantity)"
+                        />
+                        <button @click="incrementQty(cartItems.indexOf(item))" class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm">
+                          +
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="col-span-2 text-right">
+                      <div class="text-slate-900 font-medium text-sm">{{ item.price }}</div>
+                    </div>
+
+                    <div class="col-span-1 flex justify-center">
+                      <el-button link type="primary" @click="removeItem(cartItems.indexOf(item))" size="small">
+                        删除
+                      </el-button>
+                    </div>
                   </div>
                 </div>
               </div>
