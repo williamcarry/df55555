@@ -75,7 +75,12 @@
                         <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
                       </div>
                       <div class="flex-1 min-w-0">
-                        <div class="text-slate-900 font-medium text-sm line-clamp-2">{{ item.name }}</div>
+                        <div class="text-slate-900 font-medium text-sm line-clamp-2 flex justify-between items-start">
+                          <span>{{ item.name }}</span>
+                          <el-button link type="primary" @click="removeItem(cartItems.indexOf(item))" size="small" class="ml-2">
+                            删除
+                          </el-button>
+                        </div>
                         <div class="text-slate-500 text-xs mt-1">SKU: {{ item.sku }}</div>
                         <div class="text-slate-500 text-xs">可售库存：13</div>
                       </div>
@@ -105,12 +110,6 @@
 
                     <div class="col-span-2 text-right">
                       <div class="text-slate-900 font-medium text-sm">{{ item.price }}</div>
-                    </div>
-
-                    <div class="col-span-1 flex justify-center">
-                      <el-button link type="primary" @click="removeItem(cartItems.indexOf(item))" size="small">
-                        删除
-                      </el-button>
                     </div>
                   </div>
                 </div>
