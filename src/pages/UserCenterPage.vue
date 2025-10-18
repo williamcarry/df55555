@@ -108,7 +108,7 @@
                 <SidebarItem
                   label="购物车"
                   :active="activeMenu === 'shopping-cart'"
-                  @click="activeMenu = 'shopping-cart'"
+                  @click="navigateToCart"
                 />
                 <SidebarItem
                   label="商品管理"
@@ -562,7 +562,7 @@ const menuLabels: Record<string, string> = {
   'my-balance': '我的余额',
   'my-invoices': '我的账单',
   'my-vouchers': '我的采购券',
-  'payment-account': '支付账号管理',
+  'payment-account': '支付��号管理',
   'platform-auth': '平台授权',
   'order-settings': '载单设置',
   'sku-mapping': 'SKU映射',
