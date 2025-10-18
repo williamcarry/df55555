@@ -111,7 +111,7 @@
             </div>
           </el-col>
 
-          <el-col :xs="24" :md="8">
+          <el-col :xs="24" :md="5">
             <div class="bg-white rounded-lg border border-slate-200 p-6 sticky top-6">
               <h3 class="text-lg font-semibold text-slate-900 mb-5">合计</h3>
 
