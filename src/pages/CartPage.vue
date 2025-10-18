@@ -12,7 +12,7 @@
                 'px-6 py-3 font-medium border-b-2 transition',
                 cartType === 'dropship'
                   ? 'border-primary text-primary'
-                  : 'border-transparent text-slate-600 hover:text-slate-900'
+                  : 'border-transparent text-slate-600 hover:text-slate-900',
               ]"
             >
               一件代发
@@ -23,7 +23,7 @@
                 'px-6 py-3 font-medium border-b-2 transition',
                 cartType === 'wholesale'
                   ? 'border-primary text-primary'
-                  : 'border-transparent text-slate-600 hover:text-slate-900'
+                  : 'border-transparent text-slate-600 hover:text-slate-900',
               ]"
             >
               批发
@@ -34,9 +34,16 @@
         <el-row :gutter="20">
           <el-col :xs="24" :md="19">
             <div class="bg-white rounded-lg border border-slate-200">
-              <div class="grid grid-cols-12 gap-3 p-4 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
+              <div
+                class="grid grid-cols-12 gap-3 p-4 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700"
+              >
                 <div class="col-span-1">
-                  <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" class="w-4 h-4" />
+                  <input
+                    type="checkbox"
+                    v-model="selectAll"
+                    @change="toggleSelectAll"
+                    class="w-4 h-4"
+                  />
                 </div>
                 <div class="col-span-5">商品</div>
                 <div class="col-span-2 text-right">价格</div>
@@ -46,38 +53,56 @@
 
               <div v-if="cartItems.length > 0">
                 <div v-for="(group, groupIndex) in groupedItems" :key="groupIndex">
-                  <div class="grid grid-cols-12 gap-3 p-3 bg-slate-100 border-b border-slate-200 items-center text-xs font-medium text-slate-600">
+                  <div
+                    class="grid grid-cols-12 gap-3 p-3 bg-slate-100 border-b border-slate-200 items-center text-xs font-medium text-slate-600"
+                  >
                     <div class="col-span-1"></div>
                     <div class="col-span-11 flex items-center justify-between">
                       <div class="flex items-center gap-1">
                         <span v-if="group.region === 'US'" class="text-base">🇺🇸</span>
                         <span v-else-if="group.region === 'UK'" class="text-base">🇬🇧</span>
-                        <span class="font-medium">{{ group.region }} - {{ group.shipping }} ({{ group.items.length }})</span>
+                        <span class="font-medium"
+                          >{{ group.region }} - {{ group.shipping }} ({{
+                            group.items.length
+                          }})</span
+                        >
                       </div>
                       <div class="flex items-center gap-6 text-slate-500">
-                        <span class="flex items-center gap-1">
-                          ⊖ 删除选中商品(0)
-                        </span>
-                        <span class="flex items-center gap-1">
-                          ◯ 选中此运费方式商品(0)
-                        </span>
+                        <span class="flex items-center gap-1"> ⊖ 删除选中商品(0) </span>
+                        <span class="flex items-center gap-1"> ◯ 选中此运费方式商品(0) </span>
                       </div>
                     </div>
                   </div>
 
-                  <div v-for="(item, itemIndex) in group.items" :key="item.id" class="grid grid-cols-12 gap-3 p-4 border-b border-slate-200 items-center text-sm bg-white">
+                  <div
+                    v-for="(item, itemIndex) in group.items"
+                    :key="item.id"
+                    class="grid grid-cols-12 gap-3 p-4 border-b border-slate-200 items-center text-sm bg-white"
+                  >
                     <div class="col-span-1">
                       <input type="checkbox" v-model="item.selected" class="w-4 h-4" />
                     </div>
 
                     <div class="col-span-5 flex gap-3">
                       <div class="w-16 h-16 bg-slate-100 rounded flex-shrink-0 overflow-hidden">
-                        <img :src="item.image" :alt="item.name" class="w-full h-full object-cover" />
+                        <img
+                          :src="item.image"
+                          :alt="item.name"
+                          class="w-full h-full object-cover"
+                        />
                       </div>
                       <div class="flex-1 min-w-0">
-                        <div class="text-slate-900 font-medium text-sm line-clamp-2 flex justify-between items-start">
+                        <div
+                          class="text-slate-900 font-medium text-sm line-clamp-2 flex justify-between items-start"
+                        >
                           <span>{{ item.name }}</span>
-                          <el-button link type="primary" @click="removeItem(cartItems.indexOf(item))" size="small" class="ml-2">
+                          <el-button
+                            link
+                            type="primary"
+                            @click="removeItem(cartItems.indexOf(item))"
+                            size="small"
+                            class="ml-2"
+                          >
                             删除
                           </el-button>
                         </div>
@@ -88,12 +113,17 @@
 
                     <div class="col-span-2 text-right">
                       <div class="text-primary font-semibold text-sm">{{ item.price }}</div>
-                      <div class="text-slate-500 line-through text-xs">{{ item.originalPrice }}</div>
+                      <div class="text-slate-500 line-through text-xs">
+                        {{ item.originalPrice }}
+                      </div>
                     </div>
 
                     <div class="col-span-2 flex justify-center">
                       <div class="flex items-center border border-slate-300 rounded bg-white">
-                        <button @click="decrementQty(cartItems.indexOf(item))" class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm">
+                        <button
+                          @click="decrementQty(cartItems.indexOf(item))"
+                          class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm"
+                        >
                           −
                         </button>
                         <input
@@ -102,7 +132,10 @@
                           class="w-10 text-center border-l border-r border-slate-300 py-1 outline-none text-sm"
                           @change="updateQuantity(cartItems.indexOf(item), item.quantity)"
                         />
-                        <button @click="incrementQty(cartItems.indexOf(item))" class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm">
+                        <button
+                          @click="incrementQty(cartItems.indexOf(item))"
+                          class="px-2 py-1 text-slate-600 hover:bg-slate-50 text-sm"
+                        >
                           +
                         </button>
                       </div>
@@ -148,7 +181,11 @@
                 </div>
               </div>
 
-              <el-button class="w-full mb-4" style="background-color: #CB261C; border-color: #CB261C; color: white; height: 40px;">去结算</el-button>
+              <el-button
+                class="w-full mb-4"
+                style="background-color: #cb261c; border-color: #cb261c; color: white; height: 40px"
+                >去结算</el-button
+              >
 
               <div class="text-xs text-slate-500 leading-relaxed">
                 <div class="flex items-start gap-1">
@@ -193,7 +230,8 @@ const cartItems = ref([
     id: '1',
     name: '副驾驶 Mirror Driver Side FIT for Hyundai Kona II On Host Edition Night SEL Plus Sport',
     sku: '75682614',
-    image: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202308/4695cd17-10c7-473c-960a-fbb9d18c4a90.Jpeg',
+    image:
+      'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2023/202308/4695cd17-10c7-473c-960a-fbb9d18c4a90.Jpeg',
     price: 'USD 82.64',
     originalPrice: 'USD 92.64',
     quantity: 1,
@@ -205,7 +243,8 @@ const cartItems = ref([
     id: '2',
     name: '【防摔盔】双4+500 新型户外防摔硅胶头盔 220V 220V 新型户外防摔硅胶头盔 部件 电话',
     sku: '8872641',
-    image: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2024/202410/890f8f68-c40a-40c5-a4f3-017cf297c900.Jpeg',
+    image:
+      'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2024/202410/890f8f68-c40a-40c5-a4f3-017cf297c900.Jpeg',
     price: 'GBP 33.80',
     originalPrice: 'GBP 43.80',
     quantity: 1,
@@ -217,7 +256,8 @@ const cartItems = ref([
     id: '3',
     name: "10''30 白色 STUS 吸盘 油漆 镜面 PER 焊接 NO",
     sku: '5692786',
-    image: 'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2025/202508/d41d793d-cf75-4653-8470-a715d6e9f12f.Jpeg',
+    image:
+      'https://img-accelerate.saleyee.cn/Resources/GoodsImages/2025/202508/d41d793d-cf75-4653-8470-a715d6e9f12f.Jpeg',
     price: 'USD 78.20',
     originalPrice: 'USD 88.20',
     quantity: 1,
@@ -238,7 +278,7 @@ const groupedItems = computed(() => {
       groups[key] = {
         region: item.region,
         shipping: item.shipping || '标准配送',
-        items: []
+        items: [],
       }
     }
     groups[key].items.push(item)

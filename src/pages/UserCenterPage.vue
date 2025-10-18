@@ -5,7 +5,10 @@
       <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0">
         <div class="flex min-h-screen">
           <!-- 左侧���航菜单 -->
-          <div class="hidden md:block shrink-0 border-r border-slate-200" :style="{ width: 'var(--category-width)' }">
+          <div
+            class="hidden md:block shrink-0 border-r border-slate-200"
+            :style="{ width: 'var(--category-width)' }"
+          >
             <!-- 个人中心组 -->
             <div>
               <button
@@ -16,7 +19,9 @@
                 <span>个人中心</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.personal ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.personal ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.personal" class="overflow-hidden">
@@ -59,7 +64,9 @@
                 <span>消息中心</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.messages ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.messages ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.messages" class="overflow-hidden">
@@ -101,7 +108,9 @@
                 <span>商品管理</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.products ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.products ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.products" class="overflow-hidden">
@@ -149,7 +158,9 @@
                 <span>营销活动</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.marketing ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.marketing ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.marketing" class="overflow-hidden">
@@ -213,7 +224,9 @@
                 <span>客户服务</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.customers ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.customers ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.customers" class="overflow-hidden">
@@ -240,7 +253,9 @@
                 <span>第三方开店</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.platforms ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.platforms ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.platforms" class="overflow-hidden">
@@ -287,7 +302,9 @@
                 <span>资产管理</span>
                 <ChevronDown
                   class="h-4 w-4 ml-auto transition-transform duration-300"
-                  :style="{ transform: expandedGroups.feedback ? 'rotate(0deg)' : 'rotate(-90deg)' }"
+                  :style="{
+                    transform: expandedGroups.feedback ? 'rotate(0deg)' : 'rotate(-90deg)',
+                  }"
                 />
               </button>
               <div v-if="expandedGroups.feedback" class="overflow-hidden">
@@ -313,7 +330,6 @@
                 />
               </div>
             </div>
-
           </div>
 
           <!-- 右侧主要内容 -->
@@ -342,7 +358,9 @@
                       </span>
                     </div>
                   </div>
-                  <a href="#" class="text-primary hover:text-primary text-sm">7天享受多倍店铺优惠>>></a>
+                  <a href="#" class="text-primary hover:text-primary text-sm"
+                    >7天享受多倍店铺优惠>>></a
+                  >
                 </div>
               </div>
 
@@ -442,7 +460,9 @@
                   <h3 class="font-semibold text-slate-900">月订���趋势</h3>
                   <div class="text-sm text-slate-500">2025-10</div>
                 </div>
-                <div class="h-64 bg-slate-50 rounded flex items-center justify-center text-slate-500 text-sm">
+                <div
+                  class="h-64 bg-slate-50 rounded flex items-center justify-center text-slate-500 text-sm"
+                >
                   <div class="flex items-center gap-4">
                     <span class="inline-block w-3 h-3 bg-blue-500 rounded-full"></span>合计金额
                     <span class="inline-block w-3 h-3 bg-green-500 rounded-full"></span>USD
