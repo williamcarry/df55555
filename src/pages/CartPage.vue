@@ -48,7 +48,10 @@
                 <div
                   v-for="(item, index) in cartItems"
                   :key="index"
-                  class="grid grid-cols-12 gap-4 p-4 border-b border-slate-200 items-center text-sm"
+                  :class="[
+                    'grid grid-cols-12 gap-4 p-4 border-b border-slate-200 items-center text-sm',
+                    index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
+                  ]"
                 >
                   <div class="col-span-1">
                     <input type="checkbox" v-model="item.selected" class="w-4 h-4" />
