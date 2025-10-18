@@ -47,22 +47,22 @@
 
               <div v-if="cartItems.length > 0">
                 <div v-for="(group, groupIndex) in groupedItems" :key="groupIndex">
-                  <div class="grid grid-cols-12 gap-4 p-3 bg-slate-100 border-b border-slate-200 items-center text-xs font-medium text-slate-700">
+                  <div class="grid grid-cols-12 gap-3 p-3 bg-slate-100 border-b border-slate-200 items-center text-xs font-medium text-slate-600">
                     <div class="col-span-1"></div>
-                    <div class="col-span-11 flex items-center gap-2">
-                      <span v-if="group.region === 'US'" class="text-base">🇺🇸</span>
-                      <span v-else-if="group.region === 'UK'" class="text-base">🇬🇧</span>
-                      <span>{{ group.region }} - {{ group.shipping }} ({{ group.items.length }})</span>
-                      <span class="ml-auto text-slate-500">
-                        <span class="inline-flex items-center gap-1 text-xs">
-                          <i class="el-icon-d-arrow-right"></i>删除选中商品(0)
+                    <div class="col-span-11 flex items-center justify-between">
+                      <div class="flex items-center gap-1">
+                        <span v-if="group.region === 'US'" class="text-base">🇺🇸</span>
+                        <span v-else-if="group.region === 'UK'" class="text-base">🇬🇧</span>
+                        <span class="font-medium">{{ group.region }} - {{ group.shipping }} ({{ group.items.length }})</span>
+                      </div>
+                      <div class="flex items-center gap-6 text-slate-500">
+                        <span class="flex items-center gap-1">
+                          ⊖ 删除选中商品(0)
                         </span>
-                      </span>
-                      <span class="text-slate-500">
-                        <span class="inline-flex items-center gap-1 text-xs">
-                          ◯选中此运费方式商品(0)
+                        <span class="flex items-center gap-1">
+                          ◯ 选中此运费方式商品(0)
                         </span>
-                      </span>
+                      </div>
                     </div>
                   </div>
 
@@ -156,7 +156,7 @@
                 <div class="flex items-start gap-1">
                   <span class="flex-shrink-0">ⓘ</span>
                   <div>
-                    <p>税费、保障服务费和其他说���信息</p>
+                    <p>税费、保障服务费和其他说明信息</p>
                     <p>在下个页面计算</p>
                   </div>
                 </div>
