@@ -3,7 +3,33 @@
     <SiteHeader />
     <div class="flex-1 bg-slate-50">
       <div class="mx-auto w-full max-w-[1500px] md:w-[80%] md:min-w-[1200px] px-4 md:px-0 py-8">
-        <h1 class="text-2xl font-semibold text-slate-900 mb-6">购物车</h1>
+        <div class="mb-6">
+          <h1 class="text-2xl font-semibold text-slate-900 mb-4">购物车</h1>
+          <div class="flex gap-0 border-b border-slate-200">
+            <button
+              @click="cartType = 'dropship'"
+              :class="[
+                'px-6 py-3 font-medium border-b-2 transition',
+                cartType === 'dropship'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-slate-600 hover:text-slate-900'
+              ]"
+            >
+              一件代发
+            </button>
+            <button
+              @click="cartType = 'wholesale'"
+              :class="[
+                'px-6 py-3 font-medium border-b-2 transition',
+                cartType === 'wholesale'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-slate-600 hover:text-slate-900'
+              ]"
+            >
+              批发
+            </button>
+          </div>
+        </div>
 
         <el-row :gutter="20">
           <el-col :xs="24" :md="16">
