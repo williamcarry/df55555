@@ -156,7 +156,7 @@
                 <div class="flex items-start gap-1">
                   <span class="flex-shrink-0">ⓘ</span>
                   <div>
-                    <p>税费、保障服务费和其他说明信息</p>
+                    <p>税费、保障服务费和其他说���信息</p>
                     <p>在下个页面计算</p>
                   </div>
                 </div>
@@ -230,6 +230,24 @@ const cartItems = ref([
 ])
 
 const selectAll = ref(false)
+
+const groupedItems = computed(() => {
+  const groups: Record<string, { region: string; shipping: string; items: CartItem[] }> = {}
+
+  cartItems.value.forEach((item) => {
+    const key = `${item.region}-${item.shipping}`
+    if (!groups[key]) {
+      groups[key] = {
+        region: item.region,
+        shipping: item.shipping || '标准配送',
+        items: []
+      }
+    }
+    groups[key].items.push(item)
+  })
+
+  return Object.values(groups)
+})
 
 const productTotal = computed(() => {
   let total = 0
