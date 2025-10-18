@@ -483,7 +483,7 @@
 
             <!-- 其他面板 -->
             <div v-else class="bg-white rounded-lg border border-slate-200 p-6">
-              <el-empty description="此功能开发中..." />
+              <el-empty description="此功能开发��..." />
             </div>
           </div>
         </div>
@@ -562,7 +562,7 @@ const menuLabels: Record<string, string> = {
   'my-balance': '我的余额',
   'my-invoices': '我的账单',
   'my-vouchers': '我的采购券',
-  'payment-account': '支付��号管理',
+  'payment-account': '支付账号管理',
   'platform-auth': '平台授权',
   'order-settings': '载单设置',
   'sku-mapping': 'SKU映射',
@@ -580,6 +580,10 @@ const topProducts = ref([
   { rank: 2, sku: '', name: '', sales: '', ratio: '' },
   { rank: 3, sku: '', name: '', sales: '', ratio: '' },
 ])
+
+const navigateToCart = () => {
+  window.location.href = '/cart'
+}
 </script>
 
 <style scoped>
