@@ -32,7 +32,7 @@
         </div>
 
         <el-row :gutter="20">
-          <el-col :xs="24" :md="16">
+          <el-col :xs="24" :md="19">
             <div class="bg-white rounded-lg border border-slate-200">
               <div class="grid grid-cols-12 gap-4 p-4 bg-slate-50 border-b border-slate-200 text-sm font-medium text-slate-700">
                 <div class="col-span-1">
