@@ -139,7 +139,7 @@
                 </div>
               </div>
 
-              <el-button type="danger" size="large" class="w-full mb-4">去结算</el-button>
+              <el-button class="w-full mb-4" style="background-color: #CB261C; border-color: #CB261C; color: white; height: 40px;">去结算</el-button>
 
               <div class="text-xs text-slate-500 leading-relaxed">
                 <div class="flex items-start gap-1">
