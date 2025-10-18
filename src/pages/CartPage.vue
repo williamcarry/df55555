@@ -182,6 +182,8 @@ interface CartItem {
   selected: boolean
 }
 
+const cartType = ref<'dropship' | 'wholesale'>('dropship')
+
 const cartItems = ref([
   {
     id: '1',
