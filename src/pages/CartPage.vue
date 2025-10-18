@@ -152,7 +152,6 @@
 
               <div class="flex gap-2">
                 <el-button type="primary" size="large" class="flex-1">立即购买</el-button>
-                <el-button size="large" class="flex-1" @click="goHome">继续购物</el-button>
               </div>
             </div>
           </el-col>
