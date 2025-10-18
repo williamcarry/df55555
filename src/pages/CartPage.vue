@@ -112,41 +112,43 @@
           </el-col>
 
           <el-col :xs="24" :md="8">
-            <div class="bg-white rounded-lg border border-slate-200 p-6 sticky top-6">
+            <div class="bg-slate-50 rounded-lg border border-slate-200 p-6 sticky top-6">
               <h3 class="text-lg font-semibold text-slate-900 mb-6">合计</h3>
 
-              <div class="space-y-4 mb-6 pb-6 border-b border-slate-200">
-                <div class="flex justify-between text-sm">
-                  <span class="text-slate-600">商品合计：</span>
-                  <span class="text-slate-900">{{ productTotal }}</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-slate-600">商品运费：</span>
-                  <span class="text-slate-900">0.00</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-slate-600">运费优惠：</span>
-                  <span class="text-slate-900">-0.00</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                  <span class="text-slate-600">应付费用：</span>
-                  <span class="text-slate-900">{{ productTotal }}</span>
+              <div class="bg-white rounded p-4 mb-6">
+                <div class="space-y-3 text-sm">
+                  <div class="flex justify-between">
+                    <span class="text-slate-600">商品合计：</span>
+                    <span class="text-slate-900 font-medium">{{ productTotal }}</span>
+                  </div>
+                  <div class="flex justify-between border-t border-slate-200 pt-3">
+                    <span class="text-slate-600">商品运费：</span>
+                    <span class="text-slate-900 font-medium">0.00</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-600">运费优惠：</span>
+                    <span class="text-slate-900 font-medium">-0.00</span>
+                  </div>
+                  <div class="flex justify-between border-t border-slate-200 pt-3">
+                    <span class="text-slate-600">应付费用：</span>
+                    <span class="text-slate-900 font-medium">{{ productTotal }}</span>
+                  </div>
                 </div>
               </div>
 
-              <div class="bg-slate-50 rounded p-4 mb-6 text-center">
-                <div class="text-xs text-slate-600 mb-1">需支付金额</div>
+              <div class="text-center mb-6">
+                <div class="text-xs text-slate-600 mb-2">需支付金额</div>
                 <div class="text-3xl font-bold text-primary">{{ productTotal }}</div>
               </div>
 
-              <div class="space-y-2 mb-6 pb-6 border-b border-slate-200 text-sm">
+              <div class="bg-white rounded p-4 mb-6 space-y-2 text-sm">
                 <div class="flex justify-between">
                   <span class="text-slate-600">应付费用：</span>
-                  <span class="text-slate-900">{{ productTotal }}</span>
+                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
                 </div>
                 <div class="flex justify-between">
                   <span class="text-slate-600">应收费用：</span>
-                  <span class="text-slate-900">{{ productTotal }}</span>
+                  <span class="text-slate-900 font-medium">{{ productTotal }}</span>
                 </div>
               </div>
 
