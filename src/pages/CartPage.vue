@@ -38,9 +38,10 @@
                 <div class="col-span-1">
                   <input type="checkbox" v-model="selectAll" @change="toggleSelectAll" class="w-4 h-4" />
                 </div>
-                <div class="col-span-6">商品</div>
+                <div class="col-span-5">商品</div>
                 <div class="col-span-2">价格</div>
                 <div class="col-span-2">数量</div>
+                <div class="col-span-2">小计</div>
                 <div class="col-span-1">操作</div>
               </div>
 
